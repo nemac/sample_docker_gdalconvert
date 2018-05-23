@@ -1,0 +1,21 @@
+version: '2'
+services:
+  gdal:
+    image: geographica/gdal2:latest
+    container_name: gdal
+    privileged: true
+    command: tail -f /dev/null
+    volumes:
+      - ./data:/usr/local/data
+      - ./scripts:/usr/local/scripts
+    networks:
+      net:
+        ipv4_address: 10.10.0.2
+    tty: true
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.10.0.0/16
